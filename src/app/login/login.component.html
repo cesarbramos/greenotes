@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="login-content">
+        <div class="header-wrapper">
+            <div class="header">
+                <div class="header-title">
+                    <h2>Let's sign you in.</h2>
+                </div>
+                <div class="header-desc">
+                    <h2>Welcome back.</h2>
+                    <h2>You've been missed!</h2>
+                </div>
+            </div>
+        </div>
+        <main id="main">
+            <div class="form-wrapper fullwidth">
+                <form class="fullwidth">
+                    <div class="form-custom-group">
+                        <input class="form-custom-control fullwidth" type="text" placeholder="Username">
+                    </div>
+                    <div class="form-custom-group">
+                        <input class="form-custom-control fullwidth" type="password" placeholder="Password">
+                    </div>
+
+                    {{ result }}
+
+                    <!-- <button type="button"></button> -->
+
+                    <div class="buttons-wrapper">
+                        <button class="btn-custom-primary fullwidth" type="button">Sign In</button>
+                        <span class="or-sign">Or</span>
+                        <button (click)="googleSignIn()" class="btn-custom-google" type="button">
+                            <span class="btn-custom-google-icon-wrapper">
+                                <img src="assets/images/icon_google.svg" alt="Google Logo">
+                            </span>
+                            <span class="btn-custom-google-text">
+                                Continue with Google
+                            </span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </main>
+    </div>
+</div>

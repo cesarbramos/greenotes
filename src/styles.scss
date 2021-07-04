@@ -1,0 +1,118 @@
+@import 'themes';
+
+@import '~@nebular/theme/styles/globals';
+
+@include nb-install() {
+  @include nb-theme-global();
+};
+/* You can add global styles to this file, and also import other style files */
+
+
+@font-face {
+  font-family: 'Poppings-Bold';
+  src: url(assets/fonts/Poppins-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'Poppings-SemiBold';
+  src: url(assets/fonts/Poppins-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: 'Poppings-Medium';
+  src: url(assets/fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'Poppings';
+  src: url(assets/fonts/Poppins-Regular.ttf);
+}
+
+body {
+  font-family: 'Poppings', 'Poppings-Medium', sans-serif !important;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.form-custom-group {
+  margin-bottom: 16px;
+}
+
+input[type="text"].form-custom-control, 
+input[type="password"].form-custom-control {
+  outline: 0;
+  transition: border-color .25s cubic-bezier(.4,0,1,1);
+  padding: 13px;
+  border-radius: 16px;
+  font-size: 16px;
+  border: 1.67px solid #A3B2AD;
+}
+
+input[type="text"].form-custom-control:focus, 
+input[type="password"].form-custom-control:focus {
+  border: 1.67px solid #22B07D;
+}
+
+[class*=btn-custom-] {
+  border-radius: 16px;
+  padding: 16px 13px;
+  font-family: 'Poppings-SemiBold';
+  border: none;
+  outline: 0;
+  position: relative;
+  transition: .3s;;
+}
+
+[class*=btn-custom-]:active {
+  outline: 0;
+  animation: .3s btncustomactivate ease-in-out;
+}
+
+.btn-custom-primary {
+  background-color: #00B169;
+  color: white;
+  box-shadow: 0 4px 12px 0 rgba(0, 177, 105, .5);
+}
+
+.btn-custom-google {
+  padding: 10px;
+  padding-left: 13px;
+  padding-right: 13px;
+  color: white;
+  background: #4285F4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0 4px 12px 0 #4285F480;
+}
+
+.btn-custom-google > .btn-custom-google-icon-wrapper {
+  height: 28px;
+  width: 28px;
+  background: white;
+  padding: 5px;
+  margin-right: -28px;
+}
+
+.btn-custom-google > .btn-custom-google-icon-wrapper > img {
+  width: 100%;
+}
+
+.btn-custom-google > .btn-custom-google-text {
+  padding: 0;
+  margin: 0 auto;
+}
+
+@keyframes btncustomactivate {
+  0% {
+    transform: scale(.8);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "446637628119",
+    "project_id": "greenote-38189",
+    "storage_bucket": "greenote-38189.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446637628119:android:2ad792cb52607409f22e92",
+        "android_client_info": {
+          "package_name": "cr.greenotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446637628119-d6rmrf2kpapk8h7bat2leb3ch568d5g8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK3FwtlbwmPiSmZTGAVVEekjGpGm_Oubc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446637628119-d6rmrf2kpapk8h7bat2leb3ch568d5g8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

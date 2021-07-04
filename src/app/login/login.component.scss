@@ -1,0 +1,62 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    padding: 2.5rem;
+    background: linear-gradient( 180deg , rgba(255, 255, 255, .85) 0,white 220px),url('/assets/images/check_mark_1.svg') space top;
+}
+
+.login-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.header {
+    max-width: 567px;
+    margin: auto;
+    color: #2D2F31;
+    margin-top: 2rem;
+}
+
+.header-title {
+    font-family: 'Poppings-Bold';
+    font-size: 1.25rem;
+    color: #2D2F31;
+}
+
+.header-desc {
+    font-size: 1.1rem;
+    margin-bottom: 4.5rem;
+}
+
+.form-wrapper {
+    height: 100%;
+    max-width: 567px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.form-wrapper > form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 100%;
+}
+
+#main {
+    height: 100%
+}
+
+.buttons-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-direction: 1 100%;
+    margin-top: auto;
+}
+
+.or-sign {
+    margin: 12px 0px;
+    font-size: 16px;
+    color: #A3B2AD;
+    text-align: center;
+}
