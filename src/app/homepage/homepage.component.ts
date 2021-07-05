@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth-service/auth.service';
 import { FirebaseService } from '../firebase-service/firebase.service';
 import { GoogleUser } from '../models/GoogleUser';
@@ -22,7 +23,11 @@ export class HomepageComponent implements OnInit {
 
   selectedTasks: string[] = []
 
-  constructor(private authService: AuthService, private firebaseService: FirebaseService) { }
+  constructor(
+    private authService: AuthService, 
+    private firebaseService: FirebaseService,
+    private router: Router
+    ) { }
 
   get onSelection(): boolean {
     return this.selectedTasks?.length > 0 || false;
@@ -31,25 +36,31 @@ export class HomepageComponent implements OnInit {
   async ngOnInit() {
     this.today = new Date()
     this.googleUser = this.authService.getTokenData()
-    this.picture = this.googleUser.picture
+    this.picture = this.googleUser.picture;
+    this.getNotes()
+    
+    let newNote: Note = {
+      uuid: '',
+      author: this.googleUser.user_id,
+      created_at: new Date(),
+      description: 'Description example',
+      final_date: new Date(),
+      initial_date: new Date(),
+      status: 'PENDING',
+      title: 'EXAMPLE TASK'
+    }
 
+    this.firebaseService.setNote( this.googleUser.user_id, newNote);
+  }
+
+  getNotes() {
     this.firebaseService.getUserNotes(this.googleUser.user_id).then(notes => {
       this.notes = notes;
       this.notesCount = notes?.length || 0
+    }).finally(() => {
+      this.selectedTasks = []
+      this.loading = false
     })
-    
-    // let newNote: Note = {
-    //   uuid: '',
-    //   author: this.googleUser.user_id,
-    //   created_at: new Date(),
-    //   description: 'Description example',
-    //   final_date,
-    //   initial_date,
-    //   status: 'PENDING',
-    //   title: 'EXAMPLE TASK'
-    // }
-
-    // this.firebaseService.setNote( this.googleUser.user_id, newNote);
   }
 
   taskCheck(id: string) {
@@ -58,6 +69,23 @@ export class HomepageComponent implements OnInit {
 
   taskUnCheck(id: string) {
     this.selectedTasks = this.selectedTasks.filter(i => i != id)
+  }
+
+  btnAction() {
+    if (this.onSelection) {
+      this.loading = true;
+      this.firebaseService.removeNotes(this.googleUser.user_id, this.selectedTasks)
+      .catch(() => {
+        console.error("Elimination error");
+      })
+      .finally(() => {
+        this.getNotes()
+        this.loading = false
+      })
+      return;
+    }
+
+    this.router.navigate(['note-detail'])
   }
 
 }

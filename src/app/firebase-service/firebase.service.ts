@@ -47,6 +47,29 @@ export class FirebaseService implements OnInit {
     })
   }
 
+  removeNote(userId: string, noteId: string): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.noteRef(userId, noteId).remove()
+      .then(() => resolve())
+      .catch(err => reject(err))
+    })
+  }
+
+  removeNotes(userId: string, noteIds: string[]): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+
+      if (!noteIds || noteIds.length == 0){
+        resolve();
+        return;
+      }
+
+      Promise.all( noteIds.map(id => this.noteRef(userId, id).remove()) )
+      .then(() => resolve())
+      .catch(err => reject(err))
+
+    })
+  }
+
   getUserNotes(userId: string): Promise<Note[]> {
     return new Promise<Note[]>((resolve, reject) => {
       this.userNoteRef(userId).once('value')

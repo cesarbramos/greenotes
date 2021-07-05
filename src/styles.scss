@@ -30,10 +30,12 @@
 
 * {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  touch-action: manipulation;
 }
 
 body {
   font-family: 'Poppings', 'Poppings-Medium', sans-serif !important;
+  user-select: none;
 }
 
 .fullwidth {
@@ -44,8 +46,9 @@ body {
   margin-bottom: 16px;
 }
 
-input[type="text"].form-custom-control, 
-input[type="password"].form-custom-control {
+input[type="text"].form-custom-control,
+input[type="password"].form-custom-control,
+div[contentEditable="true"].form-custom-control {
   outline: 0;
   transition: border-color .25s cubic-bezier(.4,0,1,1);
   padding: 13px;
@@ -55,7 +58,21 @@ input[type="password"].form-custom-control {
 }
 
 input[type="text"].form-custom-control:focus, 
-input[type="password"].form-custom-control:focus {
+input[type="password"].form-custom-control:focus,
+div[contentEditable="true"]:focus {
+  border: 1.67px solid #22B07D;
+}
+
+textarea.form-custom-control {
+  outline: 0;
+  transition: border-color .25s cubic-bezier(.4,0,1,1);
+  padding: 13px;
+  border-radius: 16px;
+  font-size: 16px;
+  border: 1.67px solid #A3B2AD;
+}
+
+textarea.form-custom-control:focus {
   border: 1.67px solid #22B07D;
 }
 

@@ -11,6 +11,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LoadingComponent } from './loading/loading.component';
 import { CommonModule } from '@angular/common';
 import { NoteItemComponent } from './note-item/note-item.component';
+import { NoteDetailComponent } from './note-detail/note-detail.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NoteItemComponent } from './note-item/note-item.component';
     LoginComponent,
     HomepageComponent,
     LoadingComponent,
-    NoteItemComponent
+    NoteItemComponent,
+    NoteDetailComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

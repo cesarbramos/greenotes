@@ -1,0 +1,34 @@
+:host {
+    width: 100%;
+}
+
+::ng-deep {
+    .toolbar > button > .toolbar-icon {
+        height: 27px !important;
+        width: 27px !important;
+        // color: #A4B3AE;
+        color: #ADBAB5;
+    }
+    
+    .toolbar > .icon-left {
+        margin-right: auto;
+    }
+    
+    .pic-wrapper {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: auto 8px;
+    }
+    
+    .pic-user {
+        width: 100%;
+    }
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}

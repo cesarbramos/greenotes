@@ -1,10 +1,11 @@
+<app-loading *ngIf="loading"></app-loading>
 <nb-layout class="main-layout-white" >
     <nb-layout-column>
         <div class="sub-container">
             <div class="header-wrapper">
                 <div class="header">
-                    <div class="toolbar">
-                        <button nbButton ghost  class="nb-custom-button-icon settings">
+                    <app-nav-bar>
+                        <button nbButton ghost  class="nb-custom-button-icon icon-left">
                             <nb-icon class="toolbar-icon" icon="settings-outline"></nb-icon>
                         </button>
                         <div class="pic-wrapper">
@@ -16,7 +17,7 @@
                         <button nbButton ghost  class="nb-custom-button-icon">
                             <nb-icon class="toolbar-icon" icon="bell-outline"></nb-icon>
                         </button>
-                    </div>
+                    </app-nav-bar>
                     <div class="header-content">
                         <h4 class="text-indicative">Today.</h4>
                         <h2 class="text-main-date">{{ today | date: 'dd MMMM yyyy' }}</h2>
@@ -57,7 +58,7 @@
             </main>
         </div>
 
-        <button [ngClass]="onSelection ? 'btn-custom-danger' : 'btn-custom-primary'" class="btn-floating">
+        <button (click)="btnAction()" [ngClass]="onSelection ? 'btn-custom-danger' : 'btn-custom-primary'" class="btn-floating">
             <nb-icon [icon]="onSelection ? 'trash-outline' : 'plus-outline'"></nb-icon>
         </button>
     </nb-layout-column>

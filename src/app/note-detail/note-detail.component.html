@@ -1,0 +1,28 @@
+<nb-layout class="main-layout-white" >
+    <nb-layout-column>
+        <div class="sub-container">
+            <div class="header-wrapper">
+                <div class="header">
+                    <app-nav-bar>
+                        <button (click)="back()" nbButton ghost  class="nb-custom-button-icon icon-left">
+                            <nb-icon class="toolbar-icon" icon="arrow-back-outline"></nb-icon>
+                        </button>
+                        
+                        <button nbButton ghost  class="nb-custom-button-icon">
+                            <nb-icon class="toolbar-icon" icon="more-horizontal-outline"></nb-icon>
+                        </button>
+                    </app-nav-bar>
+                </div>
+            </div>
+            <div class="header-content">
+                <div class="header-content">
+                    <h4 class="text-indicative">Task todo</h4>
+                    <h2 class="text-main-date">
+                        <div #title contentEditable="true" style="font-size: 1.25rem; min-width: 100%; max-width: 100%; min-height: 25px; max-height: 200px;" class="form-custom-control fullwidth" rows="auto"></div>
+                        <!-- Create Actionable Plan for Product - Phase 01 -->
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </nb-layout-column>
+</nb-layout>
