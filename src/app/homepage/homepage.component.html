@@ -7,6 +7,9 @@
                         <button nbButton ghost  class="nb-custom-button-icon settings">
                             <nb-icon class="toolbar-icon" icon="settings-outline"></nb-icon>
                         </button>
+                        <div class="pic-wrapper">
+                            <img class="pic-user" [src]="picture" alt="Imagen de perfil">
+                        </div>
                         <button nbButton status="basic" ghost class="nb-custom-button-icon">
                             <nb-icon class="toolbar-icon" icon="search-outline"></nb-icon>
                         </button>
@@ -22,16 +25,16 @@
             </div>
             <main #main>
                 <nb-accordion>
-                    <nb-accordion-item>
+                    <nb-accordion-item style="padding-bottom: 8px;">
                         <nb-accordion-item-header style="color: #4D4F51;">
                             <div class="custom-acordion-header today">
                                 Today
-                                <span class="custom-pill custom-pill-primary">
+                                <span style="margin-left: 15px;" class="custom-pill custom-pill-primary">
                                     1
                                 </span>
                             </div>
                         </nb-accordion-item-header>
-                        <nb-accordion-item-body>
+                        <nb-accordion-item-body style="margin-top: -20px;">
                             Body
                         </nb-accordion-item-body>
                     </nb-accordion-item>
@@ -41,19 +44,21 @@
                         <nb-accordion-item-header style="color: #4D4F51;">
                             <div class="custom-acordion-header">
                                 Workspace
-                                <span class="custom-pill">3</span>
+                                <span style="margin-left: 15px;" class="custom-pill custom-pill-basic">{{ notesCount }}</span>
                             </div>
                         </nb-accordion-item-header>
-                        <nb-accordion-item-body>
-                            Body
+                        <nb-accordion-item-body style="margin-top: -20px;">
+                            <div *ngFor="let note of notes">
+                                <app-note-item [value]="note.uuid" [title]="note.title" (onCheck)="taskCheck($event)" (onUncheck)="taskUnCheck($event)"></app-note-item>
+                            </div>
                         </nb-accordion-item-body>
                     </nb-accordion-item>
                 </nb-accordion>
             </main>
         </div>
 
-        <button class="btn-custom-primary btn-floating">
-            <nb-icon icon="plus-outline"></nb-icon>
+        <button [ngClass]="onSelection ? 'btn-custom-danger' : 'btn-custom-primary'" class="btn-floating">
+            <nb-icon [icon]="onSelection ? 'trash-outline' : 'plus-outline'"></nb-icon>
         </button>
     </nb-layout-column>
 </nb-layout>

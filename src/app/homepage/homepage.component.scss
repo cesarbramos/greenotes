@@ -40,6 +40,18 @@
     margin-right: auto;
 }
 
+.pic-wrapper {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto 8px;
+}
+
+.pic-user {
+    width: 100%;
+}
+
 .header-content {
     padding: 0 15px;
 }

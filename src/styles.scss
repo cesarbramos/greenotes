@@ -154,18 +154,29 @@ input[type="password"].form-custom-control:focus {
 }
 
 .custom-pill {
-  font-family: 'Poppings-Medium';
+  font-family: 'Poppings-SemiBold';
   padding: 2px 12px;
   border-radius: 5px;
+  font-size: 13px;
+  //margin-left: 1rem;
+  width: fit-content;
+  color: #A7B5B0;
+}
+
+.custom-pill.custom-pill-basic {
   background: #EFF2F1;
   color: #AEBBB7;
-  font-size: 13px;
-  margin-left: 1rem;
 }
 
 .custom-pill.custom-pill-primary {
   color: #3FC48D;
   background: #EAF8F2;
+}
+
+.btn-custom-danger {
+  background-color: #e43d4e;
+  color: white;
+  box-shadow: 0 4px 12px 0 rgba(228, 61, 78, .5);
 }
 
 .nb-theme-default nb-spinner.status-success {
@@ -175,7 +186,7 @@ input[type="password"].form-custom-control:focus {
 }
 
 @keyframes btncustomactivate {
-  0% {
+  1% {
     transform: scale(.8);
   }
   60% {

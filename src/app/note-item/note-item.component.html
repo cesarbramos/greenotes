@@ -1,0 +1,14 @@
+<div class="note-wrapper">
+    <div class="note-flex">
+        <div class="note-checkbox-wrapper">
+            <nb-checkbox (checkedChange)="check($event)" [checked]="selected" class="note-checkbox" status="success"></nb-checkbox>
+        </div>
+        <div class="note-content">
+            <h2 class="note-title">{{ title }}</h2>
+            <div class="note-tags">
+                <span class="note-clock custom-pill">05:00 AM</span>
+                <span class="custom-pill custom-pill-primary">Today</span>
+            </div>
+        </div>
+    </div>
+</div>

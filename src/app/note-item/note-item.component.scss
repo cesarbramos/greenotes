@@ -1,0 +1,37 @@
+.note-wrapper {
+    width: 100%;
+}
+
+.note-flex {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.note-checkbox-wrapper {
+    display: flex;
+}
+
+.note-checkbox {
+    margin-top: 9px;
+}
+
+.note-content {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.note-title {
+    padding: 0;
+    margin: 0px 0px;
+    margin-left: 15px;
+    //color: #36383A;
+    color: #4D4F51;
+    font-size: 16px;
+    font-family: 'Poppings-Medium';
+}
+
+.note-clock {
+    margin-left: 5px;
+}
