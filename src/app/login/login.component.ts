@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from './login.service';
+import { AuthService } from '../auth-service/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [ LoginService ]
+  providers: [ AuthService ]
 })
 export class LoginComponent implements OnInit {
 
-  result: any;
+  loading: boolean = false
 
-  constructor(private router: Router, public service: LoginService) {
+  constructor(private router: Router, public service: AuthService) {
     if (!this.service.isExpired) {
       this.home()
     }
@@ -25,10 +25,14 @@ export class LoginComponent implements OnInit {
   }
 
   googleSignIn() {
-    this.service.googleSignIn().then((res) => {
-      this.result = res;
+    this.loading = true;
+    this.service.googleSignIn()
+    .then((res) => {
       this.home();
-    }).catch(err => this.result = JSON.stringify(err))
+    })
+    .finally(() => {
+      this.loading = false;
+    })
   }
 
 }

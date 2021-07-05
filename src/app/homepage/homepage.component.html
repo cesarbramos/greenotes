@@ -1,1 +1,59 @@
-<p>homepage works!</p>
+<nb-layout class="main-layout-white" >
+    <nb-layout-column>
+        <div class="sub-container">
+            <div class="header-wrapper">
+                <div class="header">
+                    <div class="toolbar">
+                        <button nbButton ghost  class="nb-custom-button-icon settings">
+                            <nb-icon class="toolbar-icon" icon="settings-outline"></nb-icon>
+                        </button>
+                        <button nbButton status="basic" ghost class="nb-custom-button-icon">
+                            <nb-icon class="toolbar-icon" icon="search-outline"></nb-icon>
+                        </button>
+                        <button nbButton ghost  class="nb-custom-button-icon">
+                            <nb-icon class="toolbar-icon" icon="bell-outline"></nb-icon>
+                        </button>
+                    </div>
+                    <div class="header-content">
+                        <h4 class="text-indicative">Today.</h4>
+                        <h2 class="text-main-date">{{ today | date: 'dd MMMM yyyy' }}</h2>
+                    </div>
+                </div>
+            </div>
+            <main #main>
+                <nb-accordion>
+                    <nb-accordion-item>
+                        <nb-accordion-item-header style="color: #4D4F51;">
+                            <div class="custom-acordion-header today">
+                                Today
+                                <span class="custom-pill custom-pill-primary">
+                                    1
+                                </span>
+                            </div>
+                        </nb-accordion-item-header>
+                        <nb-accordion-item-body>
+                            Body
+                        </nb-accordion-item-body>
+                    </nb-accordion-item>
+                </nb-accordion>
+                <nb-accordion>
+                    <nb-accordion-item>
+                        <nb-accordion-item-header style="color: #4D4F51;">
+                            <div class="custom-acordion-header">
+                                Workspace
+                                <span class="custom-pill">3</span>
+                            </div>
+                        </nb-accordion-item-header>
+                        <nb-accordion-item-body>
+                            Body
+                        </nb-accordion-item-body>
+                    </nb-accordion-item>
+                </nb-accordion>
+            </main>
+        </div>
+
+        <button class="btn-custom-primary btn-floating">
+            <nb-icon icon="plus-outline"></nb-icon>
+        </button>
+    </nb-layout-column>
+</nb-layout>

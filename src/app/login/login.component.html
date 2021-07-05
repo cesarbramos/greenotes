@@ -1,3 +1,4 @@
+<app-loading *ngIf="loading" ></app-loading>
 <div class="container">
     <div class="login-content">
         <div class="header-wrapper">
@@ -20,11 +21,6 @@
                     <div class="form-custom-group">
                         <input class="form-custom-control fullwidth" type="password" placeholder="Password">
                     </div>
-
-                    {{ result }}
-
-                    <!-- <button type="button"></button> -->
-
                     <div class="buttons-wrapper">
                         <button class="btn-custom-primary fullwidth" type="button">Sign In</button>
                         <span class="or-sign">Or</span>

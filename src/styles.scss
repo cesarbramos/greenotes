@@ -28,6 +28,10 @@
   src: url(assets/fonts/Poppins-Regular.ttf);
 }
 
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 body {
   font-family: 'Poppings', 'Poppings-Medium', sans-serif !important;
 }
@@ -70,6 +74,13 @@ input[type="password"].form-custom-control:focus {
   animation: .3s btncustomactivate ease-in-out;
 }
 
+[class*=btn-custom-].btn-floating {
+  position: fixed;
+  right: 25px;
+  bottom: 30px;
+  padding: 20px;
+}
+
 .btn-custom-primary {
   background-color: #00B169;
   color: white;
@@ -103,6 +114,64 @@ input[type="password"].form-custom-control:focus {
 .btn-custom-google > .btn-custom-google-text {
   padding: 0;
   margin: 0 auto;
+}
+
+.nb-theme-default nb-layout .layout {
+  background: none !important;
+}
+
+.nb-custom-button-icon {
+  border-radius: 50% !important;
+}
+
+.text-indicative {
+  font-family: 'Poppings';
+  color: #ADBAB5 !important;
+}
+
+.expansion-indicator {
+  color: #A4B2AD !important;
+}
+
+.nb-theme-default nb-accordion {
+  box-shadow: none !important;
+}
+
+.custom-acordion-header {
+  display: flex;
+  flex: 1 100%;
+  font-size: 16px;
+  font-family: 'Poppings-Medium'; 
+  align-items: center;
+}
+
+.nb-theme-default nb-accordion-item-header {
+  border: none !important;
+}
+
+.custom-acordion-header.today {
+  color: #4BBF95;
+}
+
+.custom-pill {
+  font-family: 'Poppings-Medium';
+  padding: 2px 12px;
+  border-radius: 5px;
+  background: #EFF2F1;
+  color: #AEBBB7;
+  font-size: 13px;
+  margin-left: 1rem;
+}
+
+.custom-pill.custom-pill-primary {
+  color: #3FC48D;
+  background: #EAF8F2;
+}
+
+.nb-theme-default nb-spinner.status-success {
+  background: white; 
+  border: none;
+  box-shadow: 0 4px 12px 2px #8f9bb340;
 }
 
 @keyframes btncustomactivate {

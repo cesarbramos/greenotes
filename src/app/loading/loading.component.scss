@@ -1,0 +1,19 @@
+.loader-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0000001f;
+    z-index: 99;
+}
+
+.loader-container > .scrollable-container > .layout {
+    background: transparent;
+}
+
+.loader-column {
+    height: fit-content;
+    margin: auto;
+}

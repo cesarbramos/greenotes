@@ -1,0 +1,57 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.sub-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 100%;
+    padding-top: .5rem;
+}
+
+.header-wrapper {
+    width: 100%;
+    margin-bottom: .5rem;
+}
+
+.header {
+    display: flex;
+    flex: 1 100%;
+    flex-direction: column;
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.toolbar > button > .toolbar-icon {
+    height: 27px;
+    width: 27px;
+    // color: #A4B3AE;
+    color: #ADBAB5;
+}
+
+.toolbar > .settings {
+    margin-right: auto;
+}
+
+.header-content {
+    padding: 0 15px;
+}
+
+.text-indicative {
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+.text-main-date {
+    font-family: 'Poppings-SemiBold';
+    margin-top: 5px;
+    font-size: 1.5rem;
+    color: #2B2D2F;
+}

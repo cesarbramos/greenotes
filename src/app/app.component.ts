@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
   async ngOnInit(){
 
     await StatusBar.setStyle({ style: Style.Light });
-    await StatusBar.setBackgroundColor({color: '#E7FFFB'});
+    await StatusBar.setBackgroundColor({color: '#D9D9D9'});
 
     Network.addListener('networkStatusChange', (status) => {
       this.zone.run(() => {
