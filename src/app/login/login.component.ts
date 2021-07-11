@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth-service/auth.service';
+import { FirebaseService } from '../firebase-service/firebase.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   loading: boolean = false
 
-  constructor(private router: Router, public service: AuthService) {
+  constructor(private router: Router, public service: AuthService, private firebaseService: FirebaseService) {
     if (!this.service.isExpired) {
       this.home()
     }
@@ -24,14 +25,17 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['home'])
   }
 
-  googleSignIn() {
+  async googleSignIn() {
     this.loading = true;
+
     this.service.googleSignIn()
-    .then((res) => {
-      this.home();
-    })
-    .finally(() => {
-      this.loading = false;
+    .then((user) => {
+
+      this.firebaseService.setUser(user).then(() => {
+        this.loading = false;
+        this.home();
+        
+      });
     })
   }
 

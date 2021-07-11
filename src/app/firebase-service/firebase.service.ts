@@ -1,5 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
 import firebase from 'firebase';
+import { Observable } from 'rxjs';
+import { AuthService } from '../auth-service/auth.service';
 import { Note } from '../models/Note';
 import { User } from '../models/User';
 import { UserNote } from '../models/UserNote';
@@ -10,10 +13,10 @@ import { UserNote } from '../models/UserNote';
 export class FirebaseService implements OnInit {
 
   get database() {
-    return firebase.database();
+    return this.firebase.database;
   }
 
-  constructor() { }
+  constructor(private firebase: AngularFireDatabase, private authService: AuthService) { }
 
   ngOnInit() {}
 
@@ -33,18 +36,28 @@ export class FirebaseService implements OnInit {
     return this.userRef(user.id).set(user);
   }
 
-  setNote(userId: string, note: Note) {
-    const key = firebase.database().ref().child('user-notes').push().key;
-    note.uuid = key;
-    return this.noteRef(userId, key).set(note)
+  saveNote(note: Note) {
+    let key: string = note.uuid;
+
+    if (!key) {
+      key = firebase.database().ref().child('user-notes').push().key;
+      note.uuid = key;
+    }
+
+    note.author = this.authService.userId;
+    return this.noteRef(this.authService.userId, key).set(note)
   }
 
-  getNote(userId: string, noteId: string): Promise<Note> {
+  /*getNote(userId: string, noteId: string): Promise<Note> {
     return new Promise<Note>((resolve, reject) => {
       this.noteRef(userId, noteId).once('value')
       .then(snap => resolve(snap.val()))
       .catch(err => reject(err))
     })
+  } */
+
+  getNote(noteId: string): Observable<Note> {
+    return this.firebase.object<Note>(`user-notes/${this.authService.userId}/${noteId}`).valueChanges();
   }
 
   removeNote(userId: string, noteId: string): Promise<void> {
@@ -76,6 +89,10 @@ export class FirebaseService implements OnInit {
       .then(snap => resolve(this.userNoteToArray(snap.val())) )
       .catch(err => reject(err))
     })
+  }
+
+  getUserNotesSub(userId: string): Observable<Note[]> {
+    return this.firebase.list<Note>(`user-notes/${userId}`).valueChanges()
   }
 
   private userNoteToArray(sn: UserNote): Note[] {

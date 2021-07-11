@@ -16,11 +16,25 @@
             </div>
             <div class="header-content">
                 <div class="header-content">
-                    <h4 class="text-indicative">Task todo</h4>
-                    <h2 class="text-main-date">
-                        <div #title contentEditable="true" style="font-size: 1.25rem; min-width: 100%; max-width: 100%; min-height: 25px; max-height: 200px;" class="form-custom-control fullwidth" rows="auto"></div>
-                        <!-- Create Actionable Plan for Product - Phase 01 -->
-                    </h2>
+                    <div class="title-content">
+                        <h4 class="text-indicative">Task todo</h4>
+                        <h2 class="text-main-date">
+                            <p #titleP [(ngModel)]="title" placeholder="Title" [contenteditable]="true" (ngModelChange)="titleChange($event)" style="font-size: 1.25rem; min-width: 100%; max-width: 100%; min-height: 25px;" class="form-custom-control form-custom-note-title fullwidth" rows="auto"></p>
+                            <!-- Create Actionable Plan for Product - Phase 01 -->
+                        </h2>
+                    </div>
+                    <div class="tags">
+                        <nb-tag-list>
+                            <nb-tag (click)="calendar()" status="success" appearance="outline" text="+ add date"></nb-tag>
+                          </nb-tag-list>
+                    </div>
+                    <div class="descriptions-content">
+                        <h4 class="text-indicative">Descriptions</h4>
+                        <h2 class="text-main-date">
+                            <p #descriptionP [(ngModel)]="description" placeholder="Description" [contenteditable]="true" (ngModelChange)="descChange($event)" style="font-size: 1.25rem; min-width: 100%; max-width: 100%; min-height: 75px;" class="form-custom-control form-custom-note-title fullwidth" rows="auto"></p>
+                            <!-- Create Actionable Plan for Product - Phase 01 -->
+                        </h2>
+                    </div>
                 </div>
             </div>
         </div>

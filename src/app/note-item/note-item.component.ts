@@ -21,6 +21,9 @@ export class NoteItemComponent implements OnInit {
   @Output()
   onCheck: EventEmitter<any> = new EventEmitter<any>();
 
+  @Output()
+  onSelect: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {}
@@ -29,6 +32,10 @@ export class NoteItemComponent implements OnInit {
     this.selected = val;
     if (val) this.onCheck.emit(this.value)
     else this.onUncheck.emit(this.value)
+  }
+
+  select() {
+    this.onSelect.emit()
   }
 
 }

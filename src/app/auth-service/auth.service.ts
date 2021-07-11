@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { cfaSignIn, cfaSignOut } from 'capacitor-firebase-auth';
-import { FirebaseService } from '../firebase-service/firebase.service';
 import { GoogleUser } from '../models/GoogleUser';
 import { User } from '../models/User';
 
@@ -13,7 +12,7 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
 
-  constructor(private router: Router, private firebaseService: FirebaseService) { }
+  constructor(private router: Router) { }
 
   get googleToken(): string {
     return localStorage.getItem('google_token');
@@ -35,6 +34,10 @@ export class AuthService {
     return true;
   }
 
+  get userId(): string {
+    return this.getTokenData().user_id; 
+  }
+
   getTokenData(): GoogleUser {
     return helper.decodeToken(this.googleToken);
   }
@@ -43,13 +46,12 @@ export class AuthService {
     localStorage.removeItem('google_token');
   }
 
-  googleSignIn(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
+  googleSignIn(): Promise<User> {
+    return new Promise<User>((resolve, reject) => {
       cfaSignIn('google.com').subscribe((user) => {
         user.getIdToken().then((token) => {
           this.googleToken = token;
-          this.firebaseService.setUser(this.GoogleUserToUser(this.getTokenData()));
-          resolve();
+          resolve(this.GoogleUserToUser(this.getTokenData()));
         })
       }, (err) => reject(err));
     });

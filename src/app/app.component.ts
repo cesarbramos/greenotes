@@ -1,7 +1,8 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Network } from '@capacitor/network';
-import { StatusBar, Style } from '@capacitor/status-bar';
 import * as firebase from 'firebase';
+import { firebaseConfig } from './firebaseConfig';
+import { StatusService } from './status-service/status.service';
 
 export type NetworkStatus = 'Online' | 'Offline';
 
@@ -14,27 +15,15 @@ export class AppComponent implements OnInit {
   title = 'GreeNotes';
   networkStatus: NetworkStatus = 'Offline';
 
-  firebaseConfig: Object = {
-    apiKey: "AIzaSyDAyLaTR8ab2kDyb3MUV1rB_YUQheSziAI",
-    authDomain: "greenote-38189.firebaseapp.com",
-    projectId: "greenote-38189",
-    storageBucket: "greenote-38189.appspot.com",
-    messagingSenderId: "446637628119",
-    appId: "1:446637628119:web:fdf0453db94a9475f22e92",
-    measurementId: "G-JJ17QR3N28"
-  }
-
-  constructor(private zone: NgZone){
+  constructor(private zone: NgZone, private statusService: StatusService){
     window.screen.orientation.lock('portrait');
 
-    firebase.default.initializeApp(this.firebaseConfig)
+    firebase.default.initializeApp(firebaseConfig)
     firebase.default.analytics()
   }
 
-  async ngOnInit(){
-
-    await StatusBar.setStyle({ style: Style.Light });
-    await StatusBar.setBackgroundColor({color: '#D9D9D9'});
+  ngOnInit(){
+    this.statusService.turnGray();
 
     Network.addListener('networkStatusChange', (status) => {
       this.zone.run(() => {

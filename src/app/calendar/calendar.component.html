@@ -1,0 +1,24 @@
+<nb-layout class="main-layout-white" >
+    <nb-layout-column style="padding: 0;">
+        <div class="sub-container">
+            <div class="header-wrapper">
+                <div class="header">
+                    <app-nav-bar>
+                        <button (click)="back()" nbButton ghost class="nb-custom-button-icon icon-left">
+                            <nb-icon class="toolbar-icon toolbar-icon-white" icon="arrow-back-outline"></nb-icon>
+                        </button>
+
+                        <h2 class="toolbar-title">Add Calendar</h2>
+                        
+                        <button nbButton ghost  class="nb-custom-button-icon">
+                            <nb-icon class="toolbar-icon toolbar-icon-white" icon="more-horizontal-outline"></nb-icon>
+                        </button>
+                    </app-nav-bar>
+                </div>
+            </div>
+            <div class="content">
+                <nb-calendar [(date)]="date" color="success" class="custom-calendar"></nb-calendar>
+            </div>
+        </div>
+    </nb-layout-column>
+</nb-layout>

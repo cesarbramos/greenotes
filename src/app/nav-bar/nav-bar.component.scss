@@ -9,8 +9,25 @@
         // color: #A4B3AE;
         color: #ADBAB5;
     }
+
+    .toolbar > button {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .toolbar > button > .toolbar-icon.toolbar-icon-white {
+        color: white;
+    }
     
     .toolbar > .icon-left {
+        margin-right: auto;
+    }
+
+    .toolbar-title {
+        text-align: center;
+        color: white !important;
+        font-family: 'Poppings' !important;
+        font-size: 1.25rem !important;
         margin-right: auto;
     }
     

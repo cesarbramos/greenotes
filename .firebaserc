@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "greenote-38189": {
+      "hosting": {
+        "GreeNotes": [
+          "greenote-38189"
+        ]
+      }
+    }
+  }
+}

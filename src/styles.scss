@@ -28,6 +28,9 @@
   src: url(assets/fonts/Poppins-Regular.ttf);
 }
 
+$success: #22B07D;
+$success-outline-bg: rgba(0, 214, 143, 0.08);
+
 * {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   touch-action: manipulation;
@@ -48,7 +51,7 @@ body {
 
 input[type="text"].form-custom-control,
 input[type="password"].form-custom-control,
-div[contentEditable="true"].form-custom-control {
+p[contentEditable="true"].form-custom-control {
   outline: 0;
   transition: border-color .25s cubic-bezier(.4,0,1,1);
   padding: 13px;
@@ -57,10 +60,22 @@ div[contentEditable="true"].form-custom-control {
   border: 1.67px solid #A3B2AD;
 }
 
+p[contenteditable="true"].form-custom-control.form-custom-note-title {
+  border: none;
+  font-family: 'Poppings-SemiBold';
+  padding: 0;
+}
+
 input[type="text"].form-custom-control:focus, 
 input[type="password"].form-custom-control:focus,
-div[contentEditable="true"]:focus {
+p[contentEditable="true"]:focus {
   border: 1.67px solid #22B07D;
+}
+
+p[contenteditable="true"]:empty:not(:focus):before {
+  content: attr(placeholder);
+  position: absolute;
+  color: gray;
 }
 
 textarea.form-custom-control {
@@ -200,6 +215,20 @@ textarea.form-custom-control:focus {
   background: white; 
   border: none;
   box-shadow: 0 4px 12px 2px #8f9bb340;
+}
+
+.nb-theme-default nb-calendar-picker .day-cell:not(.disabled):not(.empty).today.selected,
+.nb-theme-default nb-calendar-picker .day-cell:not(.disabled):not(.empty).selected .cell-content:hover,
+.nb-theme-default nb-calendar-picker .day-cell:not(.disabled):not(.empty).selected .cell-content,
+.nb-theme-default nb-calendar-picker .year-cell:not(.disabled):not(.empty).today.selected {
+  background-color: $success !important;
+  border-color: $success !important;
+}
+
+.nb-theme-default nb-calendar-picker .day-cell:not(.disabled):not(.empty).today .cell-content,
+.nb-theme-default nb-calendar-picker .year-cell:not(.disabled):not(.empty).today {
+  border-color: $success !important;
+  background-color: $success-outline-bg !important;
 }
 
 @keyframes btncustomactivate {

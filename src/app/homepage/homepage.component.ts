@@ -4,7 +4,6 @@ import { AuthService } from '../auth-service/auth.service';
 import { FirebaseService } from '../firebase-service/firebase.service';
 import { GoogleUser } from '../models/GoogleUser';
 import { Note } from '../models/Note';
-import { UserNote } from '../models/UserNote';
 
 @Component({
   selector: 'app-homepage',
@@ -50,17 +49,22 @@ export class HomepageComponent implements OnInit {
       title: 'EXAMPLE TASK'
     }
 
-    this.firebaseService.setNote( this.googleUser.user_id, newNote);
+    //this.firebaseService.saveNote(newNote);
   }
 
   getNotes() {
-    this.firebaseService.getUserNotes(this.googleUser.user_id).then(notes => {
-      this.notes = notes;
+
+    this.firebaseService.getUserNotesSub(this.googleUser.user_id)
+    .subscribe((notes) => {
+      this.notes = notes
       this.notesCount = notes?.length || 0
-    }).finally(() => {
       this.selectedTasks = []
       this.loading = false
-    })
+    }, 
+    (err) => {
+      this.loading = false
+      this.selectedTasks = []
+    });
   }
 
   taskCheck(id: string) {
@@ -69,6 +73,10 @@ export class HomepageComponent implements OnInit {
 
   taskUnCheck(id: string) {
     this.selectedTasks = this.selectedTasks.filter(i => i != id)
+  }
+
+  detail(note: Note){
+    this.router.navigate([`note-detail`, { id: note.uuid }])
   }
 
   btnAction() {
