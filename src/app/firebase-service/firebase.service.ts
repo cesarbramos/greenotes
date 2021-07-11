@@ -45,6 +45,9 @@ export class FirebaseService implements OnInit {
     }
 
     note.author = this.authService.userId;
+    note.final_date = note.final_date.toString()
+    note.created_at = note.created_at.toString()
+    note.initial_date = note.initial_date.toString()
     return this.noteRef(this.authService.userId, key).set(note)
   }
 

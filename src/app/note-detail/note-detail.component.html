@@ -25,8 +25,9 @@
                     </div>
                     <div class="tags">
                         <nb-tag-list>
-                            <nb-tag (click)="calendar()" status="success" appearance="outline" text="+ add date"></nb-tag>
-                          </nb-tag-list>
+                            <nb-tag *ngIf="!final_date" (click)="calendar()" status="success" appearance="outline" text="+ add date"></nb-tag>
+                            <nb-tag status="basic" (click)="calendar()" *ngIf="final_date" appearance="outline" [text]="final_date | date: 'dd MMM, yyyy hh:mm'" ></nb-tag>
+                        </nb-tag-list>
                     </div>
                     <div class="descriptions-content">
                         <h4 class="text-indicative">Descriptions</h4>

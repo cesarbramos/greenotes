@@ -1,9 +1,10 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/Operators';
 import { FirebaseService } from '../firebase-service/firebase.service';
 import { Note }  from '../models/Note'
+import { NoteTransactionService } from './note-transaction.service';
 
 @Component({
   selector: 'app-note-detail',
@@ -23,11 +24,14 @@ export class NoteDetailComponent implements OnInit, AfterViewInit {
   description: string;
   DESC_MAX_LENGTH: number = 2000;
 
+  final_date: Date = null;
+
   constructor(
     private router: Router, 
-    private cdRef: ChangeDetectorRef,
     private acRoute: ActivatedRoute,
-    private firebaseService: FirebaseService) { }
+    private cdRef: ChangeDetectorRef,
+    private firebaseService: FirebaseService,
+    private transactionService: NoteTransactionService) { }
 
   @ViewChild('titleP', { static: true }) titleP: ElementRef<HTMLParagraphElement>
   @ViewChild('descriptionP', { static: true }) descriptionP: ElementRef<HTMLParagraphElement>
@@ -37,15 +41,20 @@ export class NoteDetailComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    if (this.transactionService.date) this.final_date = this.transactionService.date;
+
     this.acRoute.params.subscribe((params) => {
       this.isNew = !params['id'];
       this.uuid = params['id'];
-    });
 
-    this.firebaseService.getNote(this.uuid).subscribe((note) => {
-      this.note = note;
-      this.title = note.title;
-      this.description = note.description;
+      if (!this.isNew) {
+        this.firebaseService.getNote(this.uuid).subscribe((note) => {
+          this.note = note;
+          this.title = note.title;
+          this.description = note.description;
+          this.final_date = this.transactionService.date || new Date(note.final_date);
+        });
+      }
     });
   }
 
@@ -62,8 +71,9 @@ export class NoteDetailComponent implements OnInit, AfterViewInit {
     if (this.isValid) {
       this.createNote()
     }
+    this.transactionService.removeDate()
     this.router.navigate(['home'])
-  }
+  } 
 
   titleChange(value: string) {
     if (!value) return;
@@ -94,6 +104,8 @@ export class NoteDetailComponent implements OnInit, AfterViewInit {
   }
 
   calendar() {
+    this.transactionService.uuid = this.uuid;
+    if (this.final_date) this.transactionService.date = this.final_date;
     this.router.navigate(['calendar'])
   }
 
@@ -104,10 +116,10 @@ export class NoteDetailComponent implements OnInit, AfterViewInit {
       uuid,
       author: '',
       title: this.title || 'Untitled',
-      description: this.description,
+      description: this.description || '',
       created_at: new Date(),
       initial_date: new Date(),
-      final_date: new Date(),
+      final_date: this.final_date || new Date(),
       status: 'PENDING',
     }
     this.firebaseService.saveNote(newNote);

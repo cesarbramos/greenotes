@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/Operators';
 import { AuthService } from '../auth-service/auth.service';
 import { FirebaseService } from '../firebase-service/firebase.service';
 import { GoogleUser } from '../models/GoogleUser';
 import { Note } from '../models/Note';
+import { NoteTransactionService } from '../note-detail/note-transaction.service';
 
 @Component({
   selector: 'app-homepage',
