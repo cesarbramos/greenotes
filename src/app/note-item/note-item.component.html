@@ -6,7 +6,8 @@
         <div class="note-content" (click)="select()">
             <h2 class="note-title">{{ title }}</h2>
             <div class="note-tags">
-                <span class="note-clock custom-pill">05:00 AM</span>
+                <span class="note-clock custom-pill custom-pill-basic">{{ date | date: 'dd MMMM yyyy' }}</span>
+                <span class="note-clock custom-pill">{{ date | date: 'hh:mm' }}</span>
                 <span class="custom-pill custom-pill-primary">Today</span>
             </div>
         </div>

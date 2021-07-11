@@ -50,7 +50,10 @@
                         </nb-accordion-item-header>
                         <nb-accordion-item-body style="margin-top: -20px;">
                             <div *ngFor="let note of notes">
-                                <app-note-item (onSelect)="detail(note)" [value]="note.uuid" [title]="note.title" (onCheck)="taskCheck($event)" (onUncheck)="taskUnCheck($event)"></app-note-item>
+                                <app-note-item (onSelect)="detail(note)" 
+                                [value]="note.uuid" [title]="note.title" 
+                                [date]="note.final_date"
+                                (onCheck)="taskCheck($event)" (onUncheck)="taskUnCheck($event)"></app-note-item>
                             </div>
                         </nb-accordion-item-body>
                     </nb-accordion-item>

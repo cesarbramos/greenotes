@@ -15,6 +15,9 @@ export class NoteItemComponent implements OnInit {
   @Input()
   title: string
 
+  @Input()
+  date: Date | string
+
   @Output()
   onUncheck: EventEmitter<any> = new EventEmitter<any>();
 
