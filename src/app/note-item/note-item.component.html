@@ -8,7 +8,7 @@
             <div class="note-tags">
                 <span class="note-clock custom-pill custom-pill-basic">{{ date | date: 'dd MMMM yyyy' }}</span>
                 <span class="note-clock custom-pill">{{ date | date: 'hh:mm' }}</span>
-                <span class="custom-pill custom-pill-primary">Today</span>
+                <span class="custom-pill custom-pill-primary" *ngIf="isToday">Today</span>
             </div>
         </div>
     </div>

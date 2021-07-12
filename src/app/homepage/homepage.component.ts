@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/Operators';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth-service/auth.service';
 import { FirebaseService } from '../firebase-service/firebase.service';
 import { GoogleUser } from '../models/GoogleUser';
 import { Note } from '../models/Note';
-import { NoteTransactionService } from '../note-detail/note-transaction.service';
+
+export type List<T> = {
+  title: string,
+  list: T[],
+  isToday?: boolean
+}
 
 @Component({
   selector: 'app-homepage',
@@ -19,7 +23,7 @@ export class HomepageComponent implements OnInit {
   loading: boolean = true
   googleUser: GoogleUser
   picture: string
-  notes: Note[]
+  notes: List<Note>[] = []
   notesCount: number = 0
 
   selectedTasks: string[] = []
@@ -58,7 +62,26 @@ export class HomepageComponent implements OnInit {
 
     this.firebaseService.getUserNotesSub(this.googleUser.user_id)
     .subscribe((notes) => {
-      this.notes = notes
+      this.notes = []
+      let today: Date = new Date(new Date().setHours(0, 0, 0));
+      
+      let todayNotes: List<Note>;
+      let nonTodayNotes: List<Note>;
+
+      todayNotes = {
+        title: 'Today',
+        list: notes.filter((v) => this.compareDate(new Date(v.final_date), today)),
+        isToday: true
+      }
+
+      this.notes.push(todayNotes);
+
+      nonTodayNotes = {
+        title: 'Workspace',
+        list: notes.filter((v) => !this.compareDate(new Date(v.final_date), today))
+      }
+
+      this.notes.push(nonTodayNotes);
       this.notesCount = notes?.length || 0
       this.selectedTasks = []
       this.loading = false
@@ -96,6 +119,15 @@ export class HomepageComponent implements OnInit {
     }
 
     this.router.navigate(['note-detail'])
+  }
+
+  compareDate(a: Date, b: Date): boolean {
+    if (!a && !b) return true
+    if (!a || !b) return false
+
+    a = new Date(a.getFullYear(), a.getMonth(), a.getDate());
+    b = new Date(b.getFullYear(), b.getMonth(), b.getDate());
+    return a.getTime() == b.getTime()
   }
 
 }

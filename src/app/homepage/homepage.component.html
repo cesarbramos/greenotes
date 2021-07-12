@@ -25,8 +25,8 @@
                 </div>
             </div>
             <main #main>
-                <nb-accordion>
-                    <nb-accordion-item style="padding-bottom: 8px;">
+                <!-- <nb-accordion>
+                    <nb-accordion-item >
                         <nb-accordion-item-header style="color: #4D4F51;">
                             <div class="custom-acordion-header today">
                                 Today
@@ -39,20 +39,21 @@
                             Body
                         </nb-accordion-item-body>
                     </nb-accordion-item>
-                </nb-accordion>
-                <nb-accordion>
-                    <nb-accordion-item>
+                </nb-accordion> -->
+                <nb-accordion *ngFor="let category of notes" style="padding-bottom: 8px;">
+                    <nb-accordion-item >
                         <nb-accordion-item-header style="color: #4D4F51;">
-                            <div class="custom-acordion-header">
-                                Workspace
-                                <span style="margin-left: 15px;" class="custom-pill custom-pill-basic">{{ notesCount }}</span>
+                            <div class="custom-acordion-header" [ngClass]="category.isToday ? 'today' : ''">
+                                {{ category.title }}
+                                <span style="margin-left: 15px;" class="custom-pill" [ngClass]="category.isToday ? 'custom-pill-primary' : 'custom-pill-basic'">{{ category.list.length }}</span>
                             </div>
                         </nb-accordion-item-header>
                         <nb-accordion-item-body style="margin-top: -20px;">
-                            <div *ngFor="let note of notes">
+                            <div *ngFor="let note of category.list">
                                 <app-note-item (onSelect)="detail(note)" 
                                 [value]="note.uuid" [title]="note.title" 
                                 [date]="note.final_date"
+                                [isToday]="category.isToday"
                                 (onCheck)="taskCheck($event)" (onUncheck)="taskUnCheck($event)"></app-note-item>
                             </div>
                         </nb-accordion-item-body>

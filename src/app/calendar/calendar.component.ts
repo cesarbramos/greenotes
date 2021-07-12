@@ -28,7 +28,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   back() {
     this.transaction.date = this.date
-    this.router.navigate(['note-detail', { id: this.transaction.uuid }])
+    let param: Object = this.transaction.uuid ? { id: this.transaction.uuid } : {}
+    this.router.navigate(['note-detail', param])
   }
 
 }

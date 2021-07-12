@@ -43,9 +43,11 @@ export class NoteDetailComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (this.transactionService.date) this.final_date = this.transactionService.date;
 
+    // GET NOTES
     this.acRoute.params.subscribe((params) => {
-      this.isNew = !params['id'];
       this.uuid = params['id'];
+      if (this.uuid == 'undefined') this.uuid = null;
+      this.isNew = !this.uuid;
 
       if (!this.isNew) {
         this.firebaseService.getNote(this.uuid).subscribe((note) => {
@@ -104,7 +106,7 @@ export class NoteDetailComponent implements OnInit, AfterViewInit {
   }
 
   calendar() {
-    this.transactionService.uuid = this.uuid;
+    if (!this.isNew) this.transactionService.uuid = this.uuid;
     if (this.final_date) this.transactionService.date = this.final_date;
     this.router.navigate(['calendar'])
   }
