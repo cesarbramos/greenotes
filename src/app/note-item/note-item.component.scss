@@ -1,5 +1,35 @@
+::ng-deep {
+    .nb-theme-default nb-checkbox.white.status-success .custom-checkbox:hover,
+    .nb-theme-default nb-checkbox.white.status-success .custom-checkbox{
+        background-color: white;
+    }
+    .nb-theme-default nb-checkbox.white.status-success .custom-checkbox:hover.checked,
+    .nb-theme-default nb-checkbox.white.status-success .custom-checkbox.checked {
+        background-color: #2ce69b !important;
+    }
+}
+
 .note-wrapper {
     width: 100%;
+}
+
+.note-wrapper.today {
+    padding: 20px 25px;
+    background: #EAF8F2;
+    border-radius: 25px;
+}
+
+.note-wrapper.today > .note-flex > .note-content > .note-title {
+    color: #2DBF84;
+    font-family: 'Poppings';
+}
+
+.note-wrapper.today > .note-flex > .note-content > .note-tags > .custom-pill.custom-pill-primary {
+    background: white;
+}
+
+.note-wrapper.today > .note-flex > .note-content > .note-tags > .custom-pill{
+    color: #2DBF84;
 }
 
 .note-flex {
@@ -26,6 +56,7 @@
 .note-title {
     padding: 0;
     margin: 0px 0px;
+    margin-bottom: 5px;
     margin-left: 15px;
     //color: #36383A;
     color: #4D4F51;

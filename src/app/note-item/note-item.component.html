@@ -1,14 +1,14 @@
-<div class="note-wrapper">
+<div class="note-wrapper" [ngClass]="isToday ? 'today' : ''">
     <div class="note-flex">
         <div class="note-checkbox-wrapper">
-            <nb-checkbox (checkedChange)="check($event)" [checked]="selected" class="note-checkbox" status="success"></nb-checkbox>
+            <nb-checkbox (checkedChange)="check($event)" [checked]="selected" [ngClass]="isToday ? 'white' : ''" class="note-checkbox" status="success"></nb-checkbox>
         </div>
         <div class="note-content" (click)="select()">
             <h2 class="note-title">{{ title }}</h2>
             <div class="note-tags">
-                <span class="note-clock custom-pill custom-pill-basic">{{ date | date: 'dd MMMM yyyy' }}</span>
-                <span class="note-clock custom-pill">{{ date | date: 'hh:mm' }}</span>
-                <span class="custom-pill custom-pill-primary" *ngIf="isToday">Today</span>
+                <span class="note-clock custom-pill custom-pill-primary">{{ date | date: 'dd MMMM yyyy' }}</span>
+                <span class="note-clock custom-pill">{{ date | date: 'hh:mm a' }}</span>
+                <!-- <span class="custom-pill custom-pill-primary" *ngIf="isToday">Today</span> -->
             </div>
         </div>
     </div>
